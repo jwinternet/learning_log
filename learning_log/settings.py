@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -138,3 +139,8 @@ LOGIN_URL = 'users:login'
 # Heroku settings.
 import django_heroku
 django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
